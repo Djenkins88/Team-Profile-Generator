@@ -4,8 +4,8 @@ const Manager = require("./lib/Manager");
 
 const inquirer = require("inquirer");
 const fs = require("fs");
-const { generate } = require("rxjs");
-const generatedHTMLFilePath = "./dist/index.html";
+const { exit } = require("process");
+const generatedHtmlFilePath = "./dist/index.html";
 
 let teamMembers = [];
 
@@ -51,7 +51,7 @@ function userChoice() {
         type: "list",
         name: "additionalMember",
         message: "Select a team member to add",
-        choices: ["Engineer", "Intern", "Create Team"],
+        choices: ["Engineer", "Intern", "createTeam", "Exit"],
       },
     ])
     .then((answers) => {
@@ -62,9 +62,12 @@ function userChoice() {
         case "Intern":
           addIntern();
           break;
+        case "createTeam":
+          writeFile();
+          break;
         default:
-          createTeam();
-      }
+          exit();
+        }
     });
 }
 
@@ -139,6 +142,50 @@ function addIntern() {
         );
         teamMembers.push(engineer);
         userChoice();
+        generateHTML();
       });
   }
 
+  function generateInitialHTML()
+  {
+    return `!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Team Profile</title>
+        <link rel="stylesheet" href="./profile.css">
+    </head>
+    <body>
+        <div class="navbar">
+            <h2>My Team</h2>
+        </div>
+    
+        <div class="cardBody">
+            <div class="teamMemberCard">`
+  }
+
+  function generateTeamMemberHtml(teamMember)
+  {
+  
+  }
+
+  function generateFinalHtml()
+  {
+    return `   </div>
+    </body>
+    </html>`;
+  }
+
+  function generateHTML()
+  {
+    fs.writeFile(generatedHtmlFilePath,"");
+    let htmlData = generateInitialHTML();
+    for(var a in teamMembers)
+    {
+      htmlData += generateTeamMemberHtml(teamMembers[a]);
+    }
+    htmlData += generateTeamMemberHtml();
+    fs.writeFile(generateFinalHtml,htmlData);
+  }
