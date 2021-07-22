@@ -168,6 +168,18 @@ function addIntern() {
 
   function generateTeamMemberHtml(teamMember)
   {
+    return `  <div class="teamMemberCard">
+    <div class ="teamMemberTitle">
+        <h3>${teamMember.getName} - ${}</h3>
+    </div>
+    <div class="teamMemberBody">
+        <ul>
+            <li>Name:jay</li>
+            <li>ID:1</li>
+            <li>Email:sfsf</li>
+        </ul>
+    </div>
+</div>`;
   
   }
 
