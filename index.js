@@ -1,7 +1,7 @@
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-
+const Employee = require("./lib/Employee");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const { exit } = require("process");
@@ -51,7 +51,7 @@ function userChoice() {
         type: "list",
         name: "additionalMember",
         message: "Select a team member to add",
-        choices: ["Engineer", "Intern", "createTeam", "Exit"],
+        choices: ["Engineer", "Intern", "Exit"],
       },
     ])
     .then((answers) => {
@@ -62,11 +62,8 @@ function userChoice() {
         case "Intern":
           addIntern();
           break;
-        case "createTeam":
-          writeFile();
-          break;
         default:
-          exit();
+          generateHTML();
         }
     });
 }
@@ -142,7 +139,7 @@ function addIntern() {
         );
         teamMembers.push(engineer);
         userChoice();
-        generateHTML();
+        
       });
   }
 
@@ -170,13 +167,13 @@ function addIntern() {
   {
     return `  <div class="teamMemberCard">
     <div class ="teamMemberTitle">
-        <h3>${teamMember.getName} - ${}</h3>
+        <h3>${teamMember.getName()} - ${teamMember.getRole()}</h3>
     </div>
     <div class="teamMemberBody">
         <ul>
-            <li>Name:jay</li>
-            <li>ID:1</li>
-            <li>Email:sfsf</li>
+            <li>ID:${teamMember.getId()}</li>
+            <li>Email: <a href="mailto:${teamMember.getEmail()}"> ${teamMember.getEmail()}</a></li>
+            ${teamMember.getRoleHtml()}
         </ul>
     </div>
 </div>`;
@@ -192,12 +189,12 @@ function addIntern() {
 
   function generateHTML()
   {
-    fs.writeFile(generatedHtmlFilePath,"");
+    fs.writeFileSync(generatedHtmlFilePath,"");
     let htmlData = generateInitialHTML();
     for(var a in teamMembers)
     {
       htmlData += generateTeamMemberHtml(teamMembers[a]);
     }
-    htmlData += generateTeamMemberHtml();
-    fs.writeFile(generateFinalHtml,htmlData);
+    htmlData += generateFinalHtml();
+    fs.writeFileSync(generatedHtmlFilePath,htmlData);
   }
