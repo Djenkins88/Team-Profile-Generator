@@ -42,6 +42,7 @@ inquirer
     );
     teamMembers.push(manager);
     userChoice();
+    console.log(teamMembers);
   });
 
 function userChoice() {
@@ -83,7 +84,7 @@ function addIntern() {
       },
       {
         type: "input",
-        name: "internEemail",
+        name: "internEmail",
         message: "Enter intern's email.",
       },
       {
@@ -102,6 +103,7 @@ function addIntern() {
       );
       teamMembers.push(intern);
       userChoice();
+      console.log(teamMembers);
     });
 }
 
@@ -110,7 +112,7 @@ function addIntern() {
       .prompt([
         {
           type: "input",
-          name: "engineer's name",
+          name: "engineerName",
           message: "Enter engineer name",
         },
         {
@@ -139,13 +141,13 @@ function addIntern() {
         );
         teamMembers.push(engineer);
         userChoice();
-        
+        console.log(teamMembers);
       });
   }
 
   function generateInitialHTML()
   {
-    return `!DOCTYPE html>
+    return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -179,7 +181,7 @@ function addIntern() {
 </div>`;
   
   }
-
+  
   function generateFinalHtml()
   {
     return `   </div>
