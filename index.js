@@ -147,17 +147,18 @@ function generateInitialHTML()
         <div class="cardBody">`
   }
 
- function generateTeamMemberHtml(teamMember)
+ function generateTeamMemberHtml(teamMembers)
   {
     return `  <div class="teamMemberCard">
     <div class ="teamMemberTitle">
-        <h3>${teamMember.getName()} - ${teamMember.getRole()}</h3>
+      <p>${teamMembers.getRole()}</p>
     </div>
     <div class="teamMemberBody">
         <ul>
-            <li>ID:${teamMember.getId()}</li>
-            <li>Email: <a href="mailto:${teamMember.getEmail()}"> ${teamMember.getEmail()}</a></li>
-            ${teamMember.getRoleHtml()}
+            <li>Name:${teamMembers.getName()}</li>
+            <li>ID:${teamMembers.getId()}</li>
+            <li>Email: <a href="mailto:${teamMembers.getEmail()}">${teamMembers.getEmail()}</a></li>
+            ${teamMembers.getRoleHtml()}
         </ul>
     </div>
 </div>`;
@@ -182,7 +183,7 @@ function generateInitialHTML()
     htmlData += generateFinalHtml();
     fs.writeFileSync('./dist/index.html',htmlData);
   }
-
+ // <h3>${teamMember.getRole()}</h3>
 /*function generateTeamMemberHtml() {
 
   const generateManager = function(manager)
