@@ -174,7 +174,6 @@ function generateInitialHTML()
   function generateHTML()
   {
     fs.writeFileSync('./dist/index.html',"");
-   // fs.writeFileSync(generateHtmlFilePath,"");
     let htmlData = generateInitialHTML();
     for(var a in teamMembers)
     {
@@ -183,82 +182,3 @@ function generateInitialHTML()
     htmlData += generateFinalHtml();
     fs.writeFileSync('./dist/index.html',htmlData);
   }
- // <h3>${teamMember.getRole()}</h3>
-/*function generateTeamMemberHtml() {
-
-  const generateManager = function(manager)
-  {
-    return `  <div class="teamMemberCard">
-    <div class ="teamMemberTitle">
-        <h3>${manager.getName()} - ${manager.getRole()}</h3>
-    </div>
-    <div class="teamMemberBody">
-        <ul>
-            <li>ID:${manager.getId()}</li>
-            <li>Email: <a href="mailto:${manager.getEmail()}"> ${manager.getEmail()}</a></li>
-        </ul>
-    </div>
-</div>`;
-  }
-
-  const generateIntern = function(intern){
-    return `  <div class="teamMemberCard">
-    <div class ="teamMemberTitle">
-        <h3>${intern.getName()} - ${intern.getRole()}</h3>
-    </div>
-    <div class="teamMemberBody">
-        <ul>
-            <li>ID:${intern.getId()}</li>
-            <li>${school.getSchool()}</li>
-        </ul>
-    </div>
-</div>`;
-  }
-
-  const generateEngineer = function(engineer){
-    return `  <div class="teamMemberCard">
-    <div class ="teamMemberTitle">
-        <h3>${enigneer.getName()} - ${engineer.getRole()}</h3>
-    </div>
-    <div class="teamMemberBody">
-        <ul>
-            <li>ID:${engineer.getId()}</li>
-            <li>Github: <a href="https://github.com/${engineer.getgithub()}"> ${engineer.getgithub()}</a></li>
-        </ul>
-    </div>
-</div>`;
-  }
-
-  teamMemberRole = (data) => {
-    htmlData = [];
-
-    for(let i = 0; i < data.length; i++) {
-      const employee = data[i];
-      const role = employee.getRole();
-
-      if (role === 'Manager') {
-        const managerCard = generateManager();
-        htmlData.push(managerCard);
-
-      }
-      if (role === 'Intern') {
-        const internCard = generateIntern();
-        htmlData.push(internCard);
-
-      }
-      if (role === 'Engineer') {
-        const engineerCard = generateEngineer();
-        htmlData.push(engineerCard);
-    }
-   // fs.writeFileSync(generatedHtmlFilePath,"");
-    //let htmlData = generateInitialHTML();
-    //const teamMemberCard = htmlData.join('')
-    //const generateTeam = generatedHtmlFilePath(teamMemberCard);
-    //htmlData += generateFinalHtml();
-    //return generateTeam;
-  }}
-}  */
-
-  
-
-  

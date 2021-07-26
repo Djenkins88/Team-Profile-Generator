@@ -6,9 +6,5 @@ describe("Enginner", () => {
       const obj = new Engineer();
       expect("github" in obj).toEqual(true);
     });
-    it("should check to see if role is in object", () => {
-      const obj = new Engineer();
-      expect("role" in obj).toEqual(false);
-    });
   });
 });
